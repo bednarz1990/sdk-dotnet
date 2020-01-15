@@ -8,16 +8,13 @@ namespace APIdaze.SDK.Messages
     public class Message : BaseApiClient, IMessage
     {
         protected override string Resource => "/sms/send";
-        private readonly Credentials _credentials;
 
         public Message(IRestClient client, Credentials credentials) : base(client, credentials)
         {
-            this._credentials = credentials;
         }
 
         public string SendTextMessage(PhoneNumber from, PhoneNumber to, string bodyMessage)
         {
-
             if (string.IsNullOrEmpty(bodyMessage)) throw new ArgumentException("body must not be null or empty");
 
             var restRequest = BuildRequest(from, to, bodyMessage);
