@@ -13,9 +13,7 @@ namespace APIdaze.SDK.Calls
     {
         protected override string Resource => "/calls";
 
-        public Calls(IRestClient client, Credentials credentials) : base(client, credentials)
-        {
-        }
+        public Calls(IRestClient client, Credentials credentials) : base(client, credentials) { }
 
         public Guid CreateCall(PhoneNumber callerId, string origin, string destination, string callType)
         {
