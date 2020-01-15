@@ -23,7 +23,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateCdrHttpHandlerExample
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListCdrHttpHandlersExample", "APIdaze.SDK.Tests.Integration\ListCdrHttpHandlersExample\ListCdrHttpHandlersExample.csproj", "{C487EEC2-82F2-442E-87B3-36D87CC90A77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateCdrHttpHandlerExample", "Apidaze.SDK.Tests.Integration\UpdateCdrHttpHandlerExample\UpdateCdrHttpHandlerExample.csproj", "{6E63B458-D2F5-40A6-B9E0-32EE1E81F6A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdateCdrHttpHandlerExample", "Apidaze.SDK.Tests.Integration\UpdateCdrHttpHandlerExample\UpdateCdrHttpHandlerExample.csproj", "{6E63B458-D2F5-40A6-B9E0-32EE1E81F6A2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DownloadRecordingAsStreamExample", "Apidaze.SDK.Tests.Integration\DownloadRecordingAsStreamExample\DownloadRecordingAsStreamExample.csproj", "{EAD7CAA9-FFA7-40F1-912C-CE1922F61794}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{6E63B458-D2F5-40A6-B9E0-32EE1E81F6A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E63B458-D2F5-40A6-B9E0-32EE1E81F6A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E63B458-D2F5-40A6-B9E0-32EE1E81F6A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EAD7CAA9-FFA7-40F1-912C-CE1922F61794}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EAD7CAA9-FFA7-40F1-912C-CE1922F61794}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EAD7CAA9-FFA7-40F1-912C-CE1922F61794}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EAD7CAA9-FFA7-40F1-912C-CE1922F61794}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -84,6 +90,7 @@ Global
 		{BA3F5CAF-CAEB-49A9-97CE-F615CA3BA8E2} = {1ABFD7DB-10C6-497A-A5F4-AC32E0BAA4B2}
 		{C487EEC2-82F2-442E-87B3-36D87CC90A77} = {1ABFD7DB-10C6-497A-A5F4-AC32E0BAA4B2}
 		{6E63B458-D2F5-40A6-B9E0-32EE1E81F6A2} = {1ABFD7DB-10C6-497A-A5F4-AC32E0BAA4B2}
+		{EAD7CAA9-FFA7-40F1-912C-CE1922F61794} = {1ABFD7DB-10C6-497A-A5F4-AC32E0BAA4B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F57FD98-5A15-49F3-923C-967E49E1A665}
