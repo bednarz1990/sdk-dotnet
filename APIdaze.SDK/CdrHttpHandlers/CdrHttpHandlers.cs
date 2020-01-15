@@ -55,7 +55,7 @@ namespace APIdaze.SDK.CdrHttpHandlers
 
         public void DeleteCdrHttpHandler(long id)
         {
-            Delete<CdrHttpHandler>(id.ToString());
+            Delete(id.ToString());
         }
     }
 }
