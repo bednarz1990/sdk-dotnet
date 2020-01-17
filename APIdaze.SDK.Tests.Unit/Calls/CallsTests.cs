@@ -23,7 +23,7 @@ namespace APIdaze.SDK.Tests.Unit.Calls
         [TestInitialize]
         public void Startup()
         {
-            _callsApi = new SDK.Calls.Calls(MockIRestClient.Object, Credentials);
+            _callsApi = new SDK.Calls.Calls(MockIRestClient.Object, CredentialsForTest);
         }
 
         [TestMethod]

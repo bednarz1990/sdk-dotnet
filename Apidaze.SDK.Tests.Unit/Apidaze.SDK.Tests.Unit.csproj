@@ -7,6 +7,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Recordings\TestData\empty.wav" />
+    <None Remove="Recordings\TestData\mediafile.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Recordings\TestData\empty.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recordings\TestData\mediafile.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="5.10.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
     <PackageReference Include="MockServerClientNet" Version="1.0.1" />

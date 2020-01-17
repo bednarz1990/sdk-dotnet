@@ -18,7 +18,7 @@ namespace APIdaze.SDK.Tests.Unit.Validates
         [TestInitialize]
         public void Startup()
         {
-            _validator = new CredentialsValidator(MockIRestClient.Object, Credentials);
+            _validator = new CredentialsValidator(MockIRestClient.Object, CredentialsForTest);
         }
 
         [TestMethod]

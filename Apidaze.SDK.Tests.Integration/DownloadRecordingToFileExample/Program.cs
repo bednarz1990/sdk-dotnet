@@ -4,7 +4,7 @@ using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
 
-namespace DownloadRecordingAsStreamExample
+namespace DownloadRecordingToFileExample
 {
     class Program
     {
@@ -29,15 +29,16 @@ namespace DownloadRecordingAsStreamExample
                 var recordingsApi = apiFactory.CreateRecordingsApi();
 
                 var sourceFileName = "example_recording.wav";
-                var targetFilePath = @"foo\fileFromStream.wav";
 
-                if (!Directory.Exists(targetFilePath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
-                }
-                using var stream = recordingsApi.DownloadRecording(sourceFileName);
-                using var fileStream = new FileStream(targetFilePath, FileMode.Create, FileAccess.Write);
-                stream.CopyTo(fileStream);
+                // 1. download a file to local directory without changing the name of the file
+                var targetFilePath = Path.GetFullPath(@"foo\");
+                var file1 = recordingsApi.DownloadRecordingToFile(sourceFileName, targetFilePath);
+                Console.WriteLine("The {0} file has been downloaded to {1}", sourceFileName, file1);
+
+                // 2. download a file to local directory and change the name of target file
+                var file2 = recordingsApi.DownloadRecordingToFile(sourceFileName, Path.Combine(targetFilePath, "my-cool-recoding.wav"));
+                Console.WriteLine("The {0} file has been downloaded to {1}", sourceFileName, file2);
+
             }
             catch (InvalidOperationException e)
             {

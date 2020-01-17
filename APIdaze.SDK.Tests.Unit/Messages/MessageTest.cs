@@ -16,7 +16,7 @@ namespace APIdaze.SDK.Tests.Unit.Messages
         [TestInitialize]
         public void Startup()
         {
-            _messageApi = new Message(MockIRestClient.Object, Credentials);
+            _messageApi = new Message(MockIRestClient.Object, CredentialsForTest);
         }
 
         [TestMethod]
