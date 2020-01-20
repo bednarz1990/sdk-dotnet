@@ -4,6 +4,7 @@ using APIdaze.SDK.Calls;
 using APIdaze.SDK.CdrHttpHandlers;
 using APIdaze.SDK.Validates;
 using APIdaze.SDK.Messages;
+using APIdaze.SDK.Recordings;
 using RestSharp;
 
 namespace APIdaze.SDK
@@ -13,7 +14,7 @@ namespace APIdaze.SDK
         private readonly Credentials _credentials;
         private readonly string _url;
 
-        internal ApiActionFactory(Credentials credentials, string url = "https://api.apidaze.io/")
+        internal ApiActionFactory(Credentials credentials, string url)
         {
             _credentials = credentials;
             _url = url;
@@ -42,6 +43,11 @@ namespace APIdaze.SDK
         public ICdrHttpHandlers CreateCdrHttpHandlersApi()
         {
             return new CdrHttpHandlers.CdrHttpHandlers(new RestClient(_url), _credentials);
+        }
+
+        public IRecordings CreateRecordingsApi()
+        {
+            return new Recordings.Recordings(new RestClient(_url), _credentials);
         }
     }
 }

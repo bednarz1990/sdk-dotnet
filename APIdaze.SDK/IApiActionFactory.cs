@@ -3,6 +3,7 @@ using APIdaze.SDK.Calls;
 using APIdaze.SDK.CdrHttpHandlers;
 using APIdaze.SDK.Validates;
 using APIdaze.SDK.Messages;
+using APIdaze.SDK.Recordings;
 
 namespace APIdaze.SDK
 {
@@ -17,5 +18,7 @@ namespace APIdaze.SDK
         IApplications CreateApplicationsApi();
 
         ICdrHttpHandlers CreateCdrHttpHandlersApi();
+
+        IRecordings CreateRecordingsApi();
     }
 }
