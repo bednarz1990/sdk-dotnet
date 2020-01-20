@@ -12,7 +12,7 @@ namespace APIdaze.SDK.ExternalScripts
 
         ExternalScript UpdateExternalScript(long id, string name, Uri url);
 
-        ExternalScript UpdateExternalScriptUrl(long id, string url);
+        ExternalScript UpdateExternalScriptUrl(long id, Uri url);
 
     }
 }

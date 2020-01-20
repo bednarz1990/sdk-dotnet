@@ -39,11 +39,11 @@ namespace APIdaze.SDK.ExternalScripts
             return Update<ExternalScript>(id.ToString(), requestBody);
         }
 
-        public ExternalScript UpdateExternalScriptUrl(long id, string url)
+        public ExternalScript UpdateExternalScriptUrl(long id, Uri url)
         {
             if (url == null) throw new ArgumentException("destination must not be null or empty");
 
-            var requestBody = new Dictionary<string, string> { { "url", url } };
+            var requestBody = new Dictionary<string, string> { { "url", url.ToString() } };
 
             return Update<ExternalScript>(id.ToString(), requestBody);
         }
