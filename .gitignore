@@ -259,3 +259,11 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+Apidaze.SDK.Tests.Integration/CallsAllInOneExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/CreateCdrHttpHandlerExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/CredentialsValidationExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/ListCallsExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/ListCdrHttpHandlersExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/MessageExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/PlaceCallExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/UpdateCdrHttpHandlerExample/client-secrets.json
