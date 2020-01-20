@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace APIdaze.SDK.ExternalScripts
+{
+    public interface IExternalScripts
+    {
+        List<ExternalScript> GetExternalScripts();
+
+        ExternalScript GetExternalScript(long id);
+
+        ExternalScript UpdateExternalScript(long id, string name, Uri url);
+
+        ExternalScript UpdateExternalScriptUrl(long id, string url);
+
+    }
+}
