@@ -6,7 +6,7 @@ namespace APIdaze.SDK.Base
     {
         T Create<T>(Dictionary<string, string> requestParams) where T : new();
 
-        IEnumerable<T> FindAll<T>() where T : new();
+        IEnumerable<T> FindAll<T>();
 
         IEnumerable<T> FindByParameter<T>(string name, string value) where T : new();
 
@@ -14,6 +14,6 @@ namespace APIdaze.SDK.Base
 
         T Update<T>(string id, Dictionary<string, string> requestParams) where T : new();
 
-        void Delete<T>(string id) where T : new();
+        void Delete(string id);
     }
 }

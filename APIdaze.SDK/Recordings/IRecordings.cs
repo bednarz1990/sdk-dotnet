@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace APIdaze.SDK.Recordings
 {
@@ -11,13 +12,9 @@ namespace APIdaze.SDK.Recordings
 
         Stream DownloadRecording(string sourceFileName);
 
-        void DownloadRecodingToFileAsync(string sourceFileName, string target);
-
-        void DownloadRecodingToFileAsync(string sourceFileName, string target, bool replaceExisting);
+        Task DownloadRecodingToFileAsync(string sourceFileName, string target);
 
         FileInfo DownloadRecodingToFile(string sourceFileName, string target);
-
-        FileInfo DownloadRecodingToFile(string sourceFileName, string target, bool replaceExisting);
 
         void DeleteRecording(string fileName);
     }

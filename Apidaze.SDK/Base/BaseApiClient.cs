@@ -47,7 +47,6 @@ namespace APIdaze.SDK.Base
         }
 
         public IEnumerable<T> FindAll<T>()
-            where T : new()
         {
             var restRequest = AuthenticateRequest();
             var response = Client.Execute<List<T>>(restRequest);
@@ -96,14 +95,14 @@ namespace APIdaze.SDK.Base
             return JsonConvert.DeserializeObject<T>(response.Content);
         }
 
-        public void Delete<T>(string id) where T : new()
+        public void Delete(string id)
         {
             var restRequest = AuthenticateRequest();
             restRequest.Resource += "/{id}";
             restRequest.Method = Method.DELETE;
             restRequest.AddUrlSegment("id", id);
 
-            var response = Client.Execute<T>(restRequest);
+            var response = Client.Execute(restRequest);
             EnsureSuccessResponse(response);
         }
 
