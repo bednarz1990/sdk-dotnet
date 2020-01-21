@@ -25,10 +25,10 @@ namespace UpdateExternalScriptUrl
             var apiFactory = ApplicationManager.CreateApiFactory(new Credentials(apiKey, apiSecret));
 
             // id of script to be fetched
-            var id = 1L;
+            var id = 1589L;
 
             // new url
-            var newScriptUrl = "http://new.cool.script.com";
+            var newScriptUrl = "http://8a66b0b1.eu.ngrok.io/";
 
             try
             {
@@ -37,11 +37,11 @@ namespace UpdateExternalScriptUrl
 
                 // get an external script
                 var script = externalScriptsApi.UpdateExternalScriptUrl(id, new Uri(newScriptUrl));
-                Console.WriteLine("Updated {0}", JsonConvert.SerializeObject(script));
+                Console.WriteLine("Updated {0}", JsonConvert.SerializeObject(script, Formatting.Indented));
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
             catch (UriFormatException e)
             {

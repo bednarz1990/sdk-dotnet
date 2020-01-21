@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using APIdaze.SDK.CdrHttpHandlers;
-using APIdaze.SDK.ExternalScripts;
+﻿using APIdaze.SDK.ExternalScripts;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
 using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
 
 namespace APIdaze.SDK.Tests.Unit.ExternalScripts

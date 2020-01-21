@@ -24,9 +24,6 @@ namespace ListExternalScripts
             // initialize API factory
             var apiFactory = ApplicationManager.CreateApiFactory(new Credentials(apiKey, apiSecret));
 
-            // id of script to be fetched
-            var id = 1L;
-
             try
             {
                 // initialize external scripts api
@@ -34,11 +31,11 @@ namespace ListExternalScripts
 
                 // get an external script lists
                 var list = externalScriptsApi.GetExternalScripts();
-                Console.WriteLine("ExternalScripts list: {0}", JsonConvert.SerializeObject(list));
+                Console.WriteLine("ExternalScripts list: {0}", JsonConvert.SerializeObject(list, Formatting.Indented));
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
         }
 

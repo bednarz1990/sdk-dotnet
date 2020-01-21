@@ -47,7 +47,7 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             // Arrange
             var cdrHttpHandlers = BuildCdrHttpHandlers();
             var name = cdrHttpHandlers.First().Name;
-            var uri = cdrHttpHandlers.First().Uri;
+            var uri = cdrHttpHandlers.First().Url;
             MockIRestClient.Setup(rc => rc.Execute<CdrHttpHandler>(It.IsAny<RestRequest>())).Returns(
                 new RestResponse<CdrHttpHandler> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(cdrHttpHandlers.First()) });
 
@@ -66,7 +66,7 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             var cdrHttpHandlers = BuildCdrHttpHandlers();
             var id = cdrHttpHandlers.First().Id;
             var name = cdrHttpHandlers.First().Name;
-            var uri = cdrHttpHandlers.First().Uri;
+            var uri = cdrHttpHandlers.First().Url;
             MockIRestClient.Setup(rc => rc.Execute<CdrHttpHandler>(It.IsAny<RestRequest>())).Returns(
                 new RestResponse<CdrHttpHandler> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(cdrHttpHandlers.First()) });
 
@@ -102,7 +102,7 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             // Arrange
             var cdrHttpHandlers = BuildCdrHttpHandlers();
             var id = cdrHttpHandlers.First().Id;
-            var uri = cdrHttpHandlers.First().Uri;
+            var uri = cdrHttpHandlers.First().Url;
             MockIRestClient.Setup(rc => rc.Execute<CdrHttpHandler>(It.IsAny<RestRequest>())).Returns(
                 new RestResponse<CdrHttpHandler> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(cdrHttpHandlers.First()) });
 
@@ -133,8 +133,8 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
         {
             return new List<CdrHttpHandler>
             {
-                new CdrHttpHandler { Name = "CdrHttpHandler - 0", Uri = new Uri("http://url-" + 0 + ".com"), Format = Format.Xml},
-                new CdrHttpHandler { Name = "CdrHttpHandler - 1", Uri = new Uri("http://url-" + 1 + ".com"), Format = Format.Json}
+                new CdrHttpHandler { Name = "CdrHttpHandler - 0", Url = new Uri("http://url-" + 0 + ".com"), Format = Format.Xml},
+                new CdrHttpHandler { Name = "CdrHttpHandler - 1", Url = new Uri("http://url-" + 1 + ".com"), Format = Format.Json}
             };
         }
     }

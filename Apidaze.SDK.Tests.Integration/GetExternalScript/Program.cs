@@ -25,7 +25,7 @@ namespace GetExternalScript
             var apiFactory = ApplicationManager.CreateApiFactory(new Credentials(apiKey, apiSecret));
 
             // id of script to be fetched
-            var id = 1L;
+            const long id = 1585L;
 
             try
             {
@@ -37,7 +37,7 @@ namespace GetExternalScript
 
                 if (script != null)
                 {
-                    Console.WriteLine("Retrieved {0}", JsonConvert.SerializeObject(script));
+                    Console.WriteLine("Retrieved {0}", JsonConvert.SerializeObject(script, Formatting.Indented));
                 }
                 else
                 {
@@ -46,7 +46,7 @@ namespace GetExternalScript
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
         }
 

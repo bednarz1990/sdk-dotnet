@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using APIdaze.SDK.Calls;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using System;
 
 namespace APIdaze.SDK.CdrHttpHandlers
 {
@@ -17,7 +14,8 @@ namespace APIdaze.SDK.CdrHttpHandlers
         [JsonConverter(typeof(StringEnumConverter))]
         public Format Format { get; set; }
 
-        [JsonProperty("uri")] public Uri Uri { get; set; }
+        [JsonProperty("url")]
+        public Uri Url { get; set; }
 
         [JsonConverter(typeof(StringEnumConverter))]
         [JsonProperty("call_leg")] public CallLeg CallLeg { get; set; }

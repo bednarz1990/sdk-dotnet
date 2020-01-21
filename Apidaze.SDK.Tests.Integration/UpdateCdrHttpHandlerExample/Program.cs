@@ -3,6 +3,7 @@ using System.IO;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace UpdateCdrHttpHandlerExample
 {
@@ -23,9 +24,9 @@ namespace UpdateCdrHttpHandlerExample
             // initialize API factory
             var apiFactory = ApplicationManager.CreateApiFactory(new Credentials(apiKey, apiSecret));
 
-            var handlerId = 111L;
-            var handlerName = "Some cool handler2";
-            var handlerUrl = "https://www.wp.com";
+            var handlerId = 107L;
+            var handlerName = "Some cool handler23";
+            var handlerUrl = "http://cool.handler.com";
 
             try
             {
@@ -34,11 +35,11 @@ namespace UpdateCdrHttpHandlerExample
 
                 // create CdrHttpHandler
                 var result = cdrHttpHandlersApi.UpdateCdrHttpHandler(handlerId, handlerName, new Uri(handlerUrl));
-                Console.WriteLine("Updated CdrHttpHandler: {0}", result);
+                Console.WriteLine("Updated CdrHttpHandler: {0}", JsonConvert.SerializeObject(result, Formatting.Indented));
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e);
             }
             catch (UriFormatException e)
             {

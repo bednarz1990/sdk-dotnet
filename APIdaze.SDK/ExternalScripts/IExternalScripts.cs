@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace APIdaze.SDK.ExternalScripts
 {
@@ -13,6 +12,5 @@ namespace APIdaze.SDK.ExternalScripts
         ExternalScript UpdateExternalScript(long id, string name, Uri url);
 
         ExternalScript UpdateExternalScriptUrl(long id, Uri url);
-
     }
 }

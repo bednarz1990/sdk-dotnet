@@ -65,7 +65,8 @@ namespace APIdaze.SDK.Base
             where T : new()
         {
             var restRequest = AuthenticateRequest();
-            restRequest.AddParameter("uuid", id);
+            restRequest.Resource += "/{id}";
+            restRequest.AddUrlSegment("id", id);
             var response = Client.Execute<T>(restRequest);
 
             EnsureSuccessResponse(response);
@@ -110,8 +111,8 @@ namespace APIdaze.SDK.Base
         {
             if (!new[] { HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest }
                 .Contains(response.StatusCode)) return;
-            var newException = new InvalidOperationException(response.StatusDescription);
+            var newException = new InvalidOperationException(response.Content);
             throw newException;
         }
-    }
+  }
 }

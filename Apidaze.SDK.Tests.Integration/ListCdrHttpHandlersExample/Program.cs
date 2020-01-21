@@ -3,6 +3,7 @@ using System.IO;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
 namespace ListCdrHttpHandlersExample
 {
@@ -30,12 +31,12 @@ namespace ListCdrHttpHandlersExample
 
                 // get CdrHttpHandler list
                 var responseList = cdrHttpHandlersApi.GetCdrHttpHandlers();
-                responseList.ForEach(x => Console.WriteLine("CdrHttpHandlers list: {0}", x));
+                responseList.ForEach(x => Console.WriteLine("CdrHttpHandlers list: {0}", JsonConvert.SerializeObject(responseList, Formatting.Indented)));
                 
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
         }
 
