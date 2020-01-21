@@ -1,14 +1,16 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
-namespace DownloadRecordingAsStreamExample
+namespace DeleteRecordingExample
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             var config = BuildConfig();
             var apiKey = config["API_KEY"];
@@ -28,16 +30,9 @@ namespace DownloadRecordingAsStreamExample
                 // initialize a Recordings API
                 var recordingsApi = apiFactory.CreateRecordingsApi();
 
-                var sourceFileName = "example_recording.wav";
-                var targetFilePath = @"foo\fileFromStream.wav";
-
-                if (!Directory.Exists(targetFilePath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
-                }
-                using var stream = recordingsApi.DownloadRecording(sourceFileName);
-                using var fileStream = new FileStream(targetFilePath, FileMode.Create, FileAccess.Write);
-                stream.CopyTo(fileStream);
+                // delete recording
+                var sourceFileName = "cb8c318b-ea11-43fd-8bb9-e78557784915.wav";
+                recordingsApi.DeleteRecording(sourceFileName);
             }
             catch (InvalidOperationException e)
             {

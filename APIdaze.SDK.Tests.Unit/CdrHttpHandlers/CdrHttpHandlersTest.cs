@@ -22,7 +22,7 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
         [TestInitialize]
         public void Startup()
         {
-            _cdrHttpHandler = new CdrHttpHandlersAlias(MockIRestClient.Object, Credentials);
+            _cdrHttpHandler = new CdrHttpHandlersAlias(MockIRestClient.Object, CredentialsForTest);
         }
 
         [TestMethod]
@@ -119,14 +119,14 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
         {
             // Arrange
             const int id = 123;
-            MockIRestClient.Setup(rc => rc.Execute<CdrHttpHandler>(It.IsAny<RestRequest>())).Returns(
-                new RestResponse<CdrHttpHandler> { StatusCode = HttpStatusCode.NoContent });
+            MockIRestClient.Setup(rc => rc.Execute(It.IsAny<RestRequest>())).Returns(
+                new RestResponse { StatusCode = HttpStatusCode.NoContent });
 
             // Act
             _cdrHttpHandler.DeleteCdrHttpHandler(id);
 
             // Assert
-            MockIRestClient.Verify(x => x.Execute<CdrHttpHandler>(It.IsAny<RestRequest>()), Times.Once);
+            MockIRestClient.Verify(x => x.Execute(It.IsAny<RestRequest>()), Times.Once);
         }
 
         private static List<CdrHttpHandler> BuildCdrHttpHandlers()

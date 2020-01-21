@@ -14,7 +14,7 @@ namespace APIdaze.SDK.Recordings
 
         Task DownloadRecodingToFileAsync(string sourceFileName, string target);
 
-        FileInfo DownloadRecodingToFile(string sourceFileName, string target);
+        FileInfo DownloadRecordingToFile(string sourceFileName, string target);
 
         void DeleteRecording(string fileName);
     }

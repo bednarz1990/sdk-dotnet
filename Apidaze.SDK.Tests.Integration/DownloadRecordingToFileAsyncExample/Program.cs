@@ -1,14 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Threading.Tasks;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
 
-namespace DownloadRecordingAsStreamExample
+namespace DownloadRecordingToFileAsyncExample
 {
     class Program
     {
-        static void Main()
+        static async Task Main(string[] args)
         {
             var config = BuildConfig();
             var apiKey = config["API_KEY"];
@@ -29,15 +30,16 @@ namespace DownloadRecordingAsStreamExample
                 var recordingsApi = apiFactory.CreateRecordingsApi();
 
                 var sourceFileName = "example_recording.wav";
-                var targetFilePath = @"foo\fileFromStream.wav";
+                var targetFilePath = Path.GetFullPath(@"foo\");
 
-                if (!Directory.Exists(targetFilePath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
-                }
-                using var stream = recordingsApi.DownloadRecording(sourceFileName);
-                using var fileStream = new FileStream(targetFilePath, FileMode.Create, FileAccess.Write);
-                stream.CopyTo(fileStream);
+                Console.WriteLine("Starting downloading the file 1");
+                await recordingsApi.DownloadRecodingToFileAsync(sourceFileName, Path.Combine(targetFilePath, "file1.wav"));
+                Console.WriteLine("The file 1 has been downloaded.");
+
+                Console.WriteLine("Starting downloading the file 2");
+                await recordingsApi.DownloadRecodingToFileAsync(sourceFileName, Path.Combine(targetFilePath, "file2.wav"));
+                Console.WriteLine("The file 2 has been downloaded.");
+
             }
             catch (InvalidOperationException e)
             {

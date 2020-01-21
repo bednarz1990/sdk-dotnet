@@ -37,11 +37,10 @@ namespace APIdaze.SDK.Recordings
                 throw new InvalidOperationException(response.ErrorMessage);
             }
 
-            var completeFilePath = Path.Combine(target, sourceFileName);
-            SaveFileToFolder(sourceFileName, target, completeFilePath, response);
+            SaveFileToFolder(sourceFileName, target, response);
         }
 
-        public FileInfo DownloadRecodingToFile(string sourceFileName, string target)
+        public FileInfo DownloadRecordingToFile(string sourceFileName, string target)
         {
             var restRequest = DownloadRequest(sourceFileName);
             var response = Client.Execute(restRequest);
@@ -50,9 +49,8 @@ namespace APIdaze.SDK.Recordings
                 throw new InvalidOperationException(response.ErrorMessage);
             }
 
-            var completeFilePath = Path.Combine(target, sourceFileName);
-            completeFilePath = SaveFileToFolder(sourceFileName, target, completeFilePath, response);
-            return new FileInfo(completeFilePath);
+            var fileName = SaveFileToFolder(sourceFileName, target, response);
+            return new FileInfo(fileName);
         }
 
         public void DeleteRecording(string fileName)
@@ -69,29 +67,22 @@ namespace APIdaze.SDK.Recordings
             return restRequest;
         }
 
-        private static string SaveFileToFolder(string sourceFileName, string target, string completeFilePath,
-            IRestResponse response)
+        private static string SaveFileToFolder(string sourceFileName, string target, IRestResponse response)
         {
-            if (Directory.Exists(target))
+            var targetDir = Path.GetDirectoryName(target);
+            var fileName = Path.GetFileName(target);
+            if (string.IsNullOrEmpty(fileName))
             {
-                var counter = 0;
-
-                while (File.Exists(completeFilePath))
-                {
-                    counter++;
-
-                    completeFilePath = Path.Combine(target,
-                        $"{Path.GetFileNameWithoutExtension(sourceFileName)} ({counter}){Path.GetExtension(sourceFileName)}");
-                }
-
-                response.RawBytes.SaveAs(completeFilePath);
-            }
-            else
-            {
-                response.RawBytes.SaveAs(completeFilePath);
+                fileName = sourceFileName;
             }
 
-            return completeFilePath;
+            var dirExists = Directory.Exists(targetDir);
+            if (!dirExists)
+                Directory.CreateDirectory(targetDir);
+
+            var fullPathName = Path.Combine(targetDir, fileName);
+            response.RawBytes.SaveAs(fullPathName);
+            return fullPathName;
         }
     }
 }
