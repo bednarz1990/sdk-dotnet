@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using APIdaze.SDK.Calls;
+﻿using APIdaze.SDK.Calls;
 using APIdaze.SDK.Messages;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using RestSharp;
-using System.Net;
-using FluentAssertions;
 using Newtonsoft.Json;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
 
 namespace APIdaze.SDK.Tests.Unit.Calls

@@ -58,7 +58,14 @@ namespace APIdaze.SDK.Base
 
         public IEnumerable<T> FindByParameter<T>(string name, string value) where T : new()
         {
-            throw new NotImplementedException();
+            var restRequest = AuthenticateRequest();
+            restRequest.AddQueryParameter("name", value);
+            var response = Client.Execute<List<T>>(restRequest);
+
+            EnsureSuccessResponse(response);
+           
+            var deserializedResponse = JsonConvert.DeserializeObject<IEnumerable<T>>(response.Content);
+            return deserializedResponse;
         }
 
         public T FindById<T>(string id)
