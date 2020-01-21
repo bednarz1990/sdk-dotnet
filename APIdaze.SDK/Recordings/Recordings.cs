@@ -1,14 +1,11 @@
 ﻿using APIdaze.SDK.Base;
 using RestSharp;
+using RestSharp.Extensions;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using APIdaze.SDK.Exception;
-using Newtonsoft.Json;
-using RestSharp.Extensions;
 
 namespace APIdaze.SDK.Recordings
 {

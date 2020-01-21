@@ -71,7 +71,7 @@ namespace APIdaze.SDK.Calls
             EnsureSuccessResponse(response);
 
             var deserializedResponse =
-                JsonConvert.DeserializeObject<ResponseCall>(response.Content );
+                JsonConvert.DeserializeObject<ResponseCall>(response.Content);
             if (deserializedResponse.Failure != null)
             {
                 throw new DeleteCallResponseException(deserializedResponse.Failure);
