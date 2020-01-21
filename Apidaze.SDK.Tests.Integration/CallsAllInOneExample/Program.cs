@@ -45,7 +45,7 @@ namespace CallsAllInOneExample
                 var call = callsApi.GetCall(callId);
                 if (call != null)
                 {
-                    Console.WriteLine("Initiated call details = {0}", call);
+                    Console.WriteLine("Initiated call details = {0}", JsonConvert.SerializeObject(call, Formatting.Indented));
                 }
                 else
                 {

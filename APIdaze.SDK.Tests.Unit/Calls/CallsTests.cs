@@ -157,7 +157,7 @@ namespace APIdaze.SDK.Tests.Unit.Calls
             var calls = BuildCallsList();
             var guid = calls.First().Uuid;
             MockIRestClient.Setup(rc => rc.Execute<Call>(It.IsAny<RestRequest>())).Returns(
-                new RestResponse<Call> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(calls) });
+                new RestResponse<Call> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(calls.First()) });
 
             // Act
             var result = _callsApi.GetCall(guid);
