@@ -262,8 +262,16 @@ __pycache__/
 Apidaze.SDK.Tests.Integration/CallsAllInOneExample/client-secrets.json
 Apidaze.SDK.Tests.Integration/CreateCdrHttpHandlerExample/client-secrets.json
 Apidaze.SDK.Tests.Integration/CredentialsValidationExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/DeleteRecordingExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/DownloadRecordingAsStreamExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/DownloadRecordingToFileAsyncExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/DownloadRecordingToFileExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/GetExternalScript/client-secrets.json
 Apidaze.SDK.Tests.Integration/ListCallsExample/client-secrets.json
 Apidaze.SDK.Tests.Integration/ListCdrHttpHandlersExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/ListExternalScripts/client-secrets.json
 Apidaze.SDK.Tests.Integration/MessageExample/client-secrets.json
 Apidaze.SDK.Tests.Integration/PlaceCallExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/RecordingsExample/client-secrets.json
 Apidaze.SDK.Tests.Integration/UpdateCdrHttpHandlerExample/client-secrets.json
+Apidaze.SDK.Tests.Integration/UpdateExternalScriptUrl/client-secrets.json

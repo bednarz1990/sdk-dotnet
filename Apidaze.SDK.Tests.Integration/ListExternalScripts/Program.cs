@@ -3,12 +3,13 @@ using System.IO;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
-namespace DownloadRecordingAsStreamExample
+namespace ListExternalScripts
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             var config = BuildConfig();
             var apiKey = config["API_KEY"];
@@ -25,19 +26,12 @@ namespace DownloadRecordingAsStreamExample
 
             try
             {
-                // initialize a Recordings API
-                var recordingsApi = apiFactory.CreateRecordingsApi();
+                // initialize external scripts api
+                var externalScriptsApi = apiFactory.CreateExternalScriptsApi();
 
-                var sourceFileName = "example_recording.wav";
-                var targetFilePath = @"foo\fileFromStream.wav";
-
-                if (!Directory.Exists(targetFilePath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
-                }
-                using var stream = recordingsApi.DownloadRecording(sourceFileName);
-                using var fileStream = new FileStream(targetFilePath, FileMode.Create, FileAccess.Write);
-                stream.CopyTo(fileStream);
+                // get an external script lists
+                var list = externalScriptsApi.GetExternalScripts();
+                Console.WriteLine("ExternalScripts list: {0}", JsonConvert.SerializeObject(list, Formatting.Indented));
             }
             catch (InvalidOperationException e)
             {

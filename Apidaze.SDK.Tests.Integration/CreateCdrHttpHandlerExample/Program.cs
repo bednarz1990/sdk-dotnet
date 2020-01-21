@@ -34,12 +34,12 @@ namespace CreateCdrHttpHandlerExample
 
                 // create CdrHttpHandler
                 var response = cdrHttpHandlersApi.CreateCdrHttpHandler(handlerName, new Uri(handlerUrl));
-                Console.WriteLine(JsonConvert.SerializeObject(response));
+                Console.WriteLine(JsonConvert.SerializeObject(response, Formatting.Indented));
             }
              
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
             catch (UriFormatException e)
             {

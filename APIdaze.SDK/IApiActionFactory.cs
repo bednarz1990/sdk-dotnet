@@ -1,6 +1,7 @@
 ﻿using APIdaze.SDK.Applications;
 using APIdaze.SDK.Calls;
 using APIdaze.SDK.CdrHttpHandlers;
+using APIdaze.SDK.ExternalScripts;
 using APIdaze.SDK.Validates;
 using APIdaze.SDK.Messages;
 using APIdaze.SDK.Recordings;
@@ -20,5 +21,7 @@ namespace APIdaze.SDK
         ICdrHttpHandlers CreateCdrHttpHandlersApi();
 
         IRecordings CreateRecordingsApi();
+
+        IExternalScripts CreateExternalScriptsApi();
     }
 }

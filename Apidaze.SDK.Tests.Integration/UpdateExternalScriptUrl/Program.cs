@@ -3,12 +3,13 @@ using System.IO;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 
-namespace DownloadRecordingAsStreamExample
+namespace UpdateExternalScriptUrl
 {
     class Program
     {
-        static void Main()
+        static void Main(string[] args)
         {
             var config = BuildConfig();
             var apiKey = config["API_KEY"];
@@ -23,25 +24,28 @@ namespace DownloadRecordingAsStreamExample
             // initialize API factory
             var apiFactory = ApplicationManager.CreateApiFactory(new Credentials(apiKey, apiSecret));
 
+            // id of script to be fetched
+            var id = 1589L;
+
+            // new url
+            var newScriptUrl = "http://8a66b0b1.eu.ngrok.io/";
+
             try
             {
-                // initialize a Recordings API
-                var recordingsApi = apiFactory.CreateRecordingsApi();
+                // initialize external scripts api
+                var externalScriptsApi = apiFactory.CreateExternalScriptsApi();
 
-                var sourceFileName = "example_recording.wav";
-                var targetFilePath = @"foo\fileFromStream.wav";
-
-                if (!Directory.Exists(targetFilePath))
-                {
-                    Directory.CreateDirectory(Path.GetDirectoryName(targetFilePath));
-                }
-                using var stream = recordingsApi.DownloadRecording(sourceFileName);
-                using var fileStream = new FileStream(targetFilePath, FileMode.Create, FileAccess.Write);
-                stream.CopyTo(fileStream);
+                // get an external script
+                var script = externalScriptsApi.UpdateExternalScriptUrl(id, new Uri(newScriptUrl));
+                Console.WriteLine("Updated {0}", JsonConvert.SerializeObject(script, Formatting.Indented));
             }
             catch (InvalidOperationException e)
             {
                 Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
+            }
+            catch (UriFormatException e)
+            {
+                Console.WriteLine("newScriptUrl is invalid {0}", e.Message);
             }
         }
 
