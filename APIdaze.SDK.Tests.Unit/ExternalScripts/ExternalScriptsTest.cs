@@ -46,7 +46,7 @@ namespace APIdaze.SDK.Tests.Unit.ExternalScripts
             var scripts = BuildExternalScriptsLists();
             var id = scripts.First().Id;
             MockIRestClient.Setup(rc => rc.Execute<ExternalScript>(It.IsAny<RestRequest>())).Returns(
-                new RestResponse<ExternalScript> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(scripts) });
+                new RestResponse<ExternalScript> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(scripts.First()) });
 
             // Act
             var result = _externalScripts.GetExternalScript(id);
