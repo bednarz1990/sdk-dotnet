@@ -4,6 +4,7 @@ using APIdaze.SDK.Messages;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
+using APIdaze.SDK.Exception;
 
 namespace MessageExample
 {

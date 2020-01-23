@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using APIdaze.SDK.Base;
+using APIdaze.SDK.Exception;
 using APIdaze.SDK.Messages;
 using Newtonsoft.Json;
 using RestSharp;

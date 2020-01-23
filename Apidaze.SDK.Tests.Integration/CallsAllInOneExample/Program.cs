@@ -3,6 +3,7 @@ using System.IO;
 using APIdaze.SDK;
 using APIdaze.SDK.Base;
 using APIdaze.SDK.Calls;
+using APIdaze.SDK.Exception;
 using APIdaze.SDK.Messages;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
