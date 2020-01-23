@@ -26,11 +26,4 @@ namespace APIdaze.SDK.Messages
             return _number;
         }
     }
-
-    public class InvalidPhoneNumberException : System.Exception
-    {
-        public InvalidPhoneNumberException(string message) : base(message)
-        {
-        }
-    }
 }

@@ -1,9 +1,9 @@
-﻿using Newtonsoft.Json;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using HttpStatusCode = System.Net.HttpStatusCode;
+using System.Net;
+using Newtonsoft.Json;
+using RestSharp;
 
 namespace APIdaze.SDK.Base
 {
@@ -11,7 +11,6 @@ namespace APIdaze.SDK.Base
     {
         private readonly Credentials _credentials;
         protected readonly IRestClient Client;
-        protected abstract string Resource { get; }
 
         protected BaseApiClient(IRestClient client, Credentials credentials)
         {
@@ -19,15 +18,7 @@ namespace APIdaze.SDK.Base
             _credentials = credentials;
         }
 
-        protected RestRequest AuthenticateRequest()
-        {
-            var restRequest = new RestRequest("{api_key}" + Resource);
-            restRequest.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            restRequest.AddUrlSegment("api_key", _credentials.ApiKey);
-            restRequest.AddQueryParameter("api_secret", _credentials.ApiSecret);
-
-            return restRequest;
-        }
+        protected abstract string Resource { get; }
 
         public T Create<T>(Dictionary<string, string> requestParams) where T : new()
         {
@@ -35,9 +26,7 @@ namespace APIdaze.SDK.Base
             restRequest.Method = Method.POST;
 
             foreach (var nameValueParameter in requestParams)
-            {
                 restRequest.AddParameter(nameValueParameter.Key, nameValueParameter.Value);
-            }
 
             var response = Client.Execute<T>(restRequest);
             EnsureSuccessResponse(response);
@@ -69,10 +58,7 @@ namespace APIdaze.SDK.Base
             var response = Client.Execute<T>(restRequest);
 
             EnsureSuccessResponse(response);
-            if (response.StatusCode == HttpStatusCode.NotFound)
-            {
-                return default;
-            }
+            if (response.StatusCode == HttpStatusCode.NotFound) return default;
             var deserializedResponse = JsonConvert.DeserializeObject<IEnumerable<T>>(response.Content);
             return deserializedResponse.FirstOrDefault();
         }
@@ -85,9 +71,7 @@ namespace APIdaze.SDK.Base
             restRequest.AddUrlSegment("id", id);
 
             foreach (var nameValueParameter in requestParams)
-            {
                 restRequest.AddParameter(nameValueParameter.Key, nameValueParameter.Value);
-            }
 
             var response = Client.Execute<T>(restRequest);
             EnsureSuccessResponse(response);
@@ -106,9 +90,19 @@ namespace APIdaze.SDK.Base
             EnsureSuccessResponse(response);
         }
 
+        protected RestRequest AuthenticateRequest()
+        {
+            var restRequest = new RestRequest("{api_key}" + Resource);
+            restRequest.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            restRequest.AddUrlSegment("api_key", _credentials.ApiKey);
+            restRequest.AddQueryParameter("api_secret", _credentials.ApiSecret);
+
+            return restRequest;
+        }
+
         internal static void EnsureSuccessResponse(IRestResponse response)
         {
-            if (!new[] { HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest }
+            if (!new[] {HttpStatusCode.InternalServerError, HttpStatusCode.BadRequest}
                 .Contains(response.StatusCode)) return;
             var newException = new InvalidOperationException(response.StatusDescription);
             throw newException;

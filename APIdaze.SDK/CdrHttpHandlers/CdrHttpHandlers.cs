@@ -1,18 +1,18 @@
-﻿using APIdaze.SDK.Base;
-using RestSharp;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using APIdaze.SDK.Base;
+using RestSharp;
 
 namespace APIdaze.SDK.CdrHttpHandlers
 {
     public class CdrHttpHandlers : BaseApiClient, ICdrHttpHandlers
     {
-        protected override string Resource => "/cdrhttphandlers";
-
         public CdrHttpHandlers(IRestClient client, Credentials credentials) : base(client, credentials)
         {
         }
+
+        protected override string Resource => "/cdrhttphandlers";
 
         public List<CdrHttpHandler> GetCdrHttpHandlers()
         {
@@ -24,7 +24,7 @@ namespace APIdaze.SDK.CdrHttpHandlers
             if (string.IsNullOrEmpty(name)) throw new ArgumentException("origin must not be null or empty");
             if (url == null) throw new ArgumentException("destination must not be null or empty");
 
-            var requestBody = new Dictionary<string, string> { { "name", name }, { "url", url.ToString() } };
+            var requestBody = new Dictionary<string, string> {{"name", name}, {"url", url.ToString()}};
             return Create<CdrHttpHandler>(requestBody);
         }
 
@@ -33,7 +33,7 @@ namespace APIdaze.SDK.CdrHttpHandlers
             if (string.IsNullOrEmpty(name)) throw new ArgumentException("origin must not be null or empty");
             if (url == null) throw new ArgumentException("destination must not be null or empty");
 
-            var requestBody = new Dictionary<string, string> { { "name", name }, { "url", url.ToString() } };
+            var requestBody = new Dictionary<string, string> {{"name", name}, {"url", url.ToString()}};
             return Update<CdrHttpHandler>(id.ToString(), requestBody);
         }
 
@@ -41,7 +41,7 @@ namespace APIdaze.SDK.CdrHttpHandlers
         {
             if (string.IsNullOrEmpty(name)) throw new ArgumentException("origin must not be null or empty");
 
-            var requestBody = new Dictionary<string, string> { { "name", name } };
+            var requestBody = new Dictionary<string, string> {{"name", name}};
             return Update<CdrHttpHandler>(id.ToString(), requestBody);
         }
 
@@ -49,7 +49,7 @@ namespace APIdaze.SDK.CdrHttpHandlers
         {
             if (url == null) throw new ArgumentException("destination must not be null or empty");
 
-            var requestBody = new Dictionary<string, string> { { "url", url.ToString() } };
+            var requestBody = new Dictionary<string, string> {{"url", url.ToString()}};
             return Update<CdrHttpHandler>(id.ToString(), requestBody);
         }
 

@@ -12,6 +12,11 @@ namespace APIdaze.SDK.ScriptsBuilders
         IsNullable = false)]
     public class ApidazeScript
     {
+        public ApidazeScript()
+        {
+            Nodes = new List<object>();
+        }
+
         [XmlArrayItem(typeof(Answer), ElementName = "answer")]
         [XmlArrayItem(typeof(Hangup), ElementName = "hangup")]
         [XmlArrayItem(typeof(Playback), ElementName = "playback")]
@@ -25,15 +30,11 @@ namespace APIdaze.SDK.ScriptsBuilders
             return this;
         }
 
-        public ApidazeScript()
-        {
-            Nodes = new List<object>();
-        }
         public string ToXml()
         {
-            var listOfType = new List<Type>() { typeof(Hangup), typeof(Answer), typeof(Playback), typeof(Bind) };
+            var listOfType = new List<Type> {typeof(Hangup), typeof(Answer), typeof(Playback), typeof(Bind)};
 
-            XmlWriterSettings settings = new XmlWriterSettings
+            var settings = new XmlWriterSettings
             {
                 OmitXmlDeclaration = true,
                 ConformanceLevel = ConformanceLevel.Fragment,
@@ -44,14 +45,13 @@ namespace APIdaze.SDK.ScriptsBuilders
             var xns = new XmlSerializerNamespaces();
             xns.Add(string.Empty, string.Empty);
 
-            XmlSerializer serializer = new XmlSerializer(typeof(ApidazeScript), listOfType.ToArray());
+            var serializer = new XmlSerializer(typeof(ApidazeScript), listOfType.ToArray());
 
-            MemoryStream stream = new MemoryStream();
-            XmlWriter writer = XmlWriter.Create(stream, settings);
+            var stream = new MemoryStream();
+            var writer = XmlWriter.Create(stream, settings);
             serializer.Serialize(stream, this, xns);
             stream.Position = 0;
             return Encoding.UTF8.GetString(stream.GetBuffer());
         }
-
     }
 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using APIdaze.SDK.CdrHttpHandlers;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
 
 namespace APIdaze.SDK.ExternalScripts
 {
@@ -18,7 +14,7 @@ namespace APIdaze.SDK.ExternalScripts
         [JsonProperty("sms_url")] public Uri SmsUrl { get; set; }
 
         [JsonProperty("reseller_cust_id")] public long ResellerCustomerId { get; set; }
-       
+
         [JsonProperty("dev_cust_id")] public long DevCustomerId { get; set; }
 
         [JsonProperty("created_at")] public DateTime CreatedAt { get; set; }

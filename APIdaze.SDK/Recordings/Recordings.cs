@@ -1,19 +1,21 @@
-﻿using APIdaze.SDK.Base;
-using RestSharp;
-using RestSharp.Extensions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Threading.Tasks;
+using APIdaze.SDK.Base;
+using RestSharp;
+using RestSharp.Extensions;
 
 namespace APIdaze.SDK.Recordings
 {
     public class Recordings : BaseApiClient, IRecordings
     {
-        protected override string Resource => "/recordings";
+        public Recordings(IRestClient client, Credentials credentials) : base(client, credentials)
+        {
+        }
 
-        public Recordings(IRestClient client, Credentials credentials) : base(client, credentials) { }
+        protected override string Resource => "/recordings";
 
         public IEnumerable<string> GetRecordingsList()
         {
@@ -32,10 +34,7 @@ namespace APIdaze.SDK.Recordings
             var restRequest = DownloadRequest(sourceFileName);
             var response = await Client.ExecuteTaskAsync(restRequest);
 
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new InvalidOperationException(response.ErrorMessage);
-            }
+            if (response.StatusCode != HttpStatusCode.OK) throw new InvalidOperationException(response.ErrorMessage);
 
             SaveFileToFolder(sourceFileName, target, response);
         }
@@ -44,10 +43,7 @@ namespace APIdaze.SDK.Recordings
         {
             var restRequest = DownloadRequest(sourceFileName);
             var response = Client.Execute(restRequest);
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new InvalidOperationException(response.ErrorMessage);
-            }
+            if (response.StatusCode != HttpStatusCode.OK) throw new InvalidOperationException(response.ErrorMessage);
 
             var fileName = SaveFileToFolder(sourceFileName, target, response);
             return new FileInfo(fileName);
@@ -71,10 +67,7 @@ namespace APIdaze.SDK.Recordings
         {
             var targetDir = Path.GetDirectoryName(target);
             var fileName = Path.GetFileName(target);
-            if (string.IsNullOrEmpty(fileName))
-            {
-                fileName = sourceFileName;
-            }
+            if (string.IsNullOrEmpty(fileName)) fileName = sourceFileName;
 
             var dirExists = Directory.Exists(targetDir);
             if (!dirExists)
