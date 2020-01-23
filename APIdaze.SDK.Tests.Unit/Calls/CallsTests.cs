@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using APIdaze.SDK.Calls;
+﻿using APIdaze.SDK.Calls;
 using APIdaze.SDK.Messages;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using RestSharp;
-using System.Net;
-using FluentAssertions;
 using Newtonsoft.Json;
+using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
 
 namespace APIdaze.SDK.Tests.Unit.Calls
@@ -157,7 +155,7 @@ namespace APIdaze.SDK.Tests.Unit.Calls
             var calls = BuildCallsList();
             var guid = calls.First().Uuid;
             MockIRestClient.Setup(rc => rc.Execute<Call>(It.IsAny<RestRequest>())).Returns(
-                new RestResponse<Call> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(calls) });
+                new RestResponse<Call> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(calls.First()) });
 
             // Act
             var result = _callsApi.GetCall(guid);

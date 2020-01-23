@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using APIdaze.SDK.CdrHttpHandlers;
-using APIdaze.SDK.ExternalScripts;
+﻿using APIdaze.SDK.ExternalScripts;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
 using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
 
 namespace APIdaze.SDK.Tests.Unit.ExternalScripts
@@ -47,7 +46,7 @@ namespace APIdaze.SDK.Tests.Unit.ExternalScripts
             var scripts = BuildExternalScriptsLists();
             var id = scripts.First().Id;
             MockIRestClient.Setup(rc => rc.Execute<ExternalScript>(It.IsAny<RestRequest>())).Returns(
-                new RestResponse<ExternalScript> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(scripts) });
+                new RestResponse<ExternalScript> { StatusCode = HttpStatusCode.Accepted, Content = JsonConvert.SerializeObject(scripts.First()) });
 
             // Act
             var result = _externalScripts.GetExternalScript(id);

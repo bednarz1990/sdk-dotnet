@@ -32,11 +32,11 @@ namespace RecordingsExample
 
                 // get recordings list
                 var list =  recordingsApi.GetRecordingsList();
-                list.ToList().ForEach(x => Console.WriteLine("Recordings: {0}", JsonConvert.SerializeObject(x)));
+                list.ToList().ForEach(x => Console.WriteLine("Recordings: {0}", JsonConvert.SerializeObject(x, Formatting.Indented)));
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
         }
 

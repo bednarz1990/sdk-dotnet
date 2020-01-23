@@ -42,7 +42,7 @@ namespace DownloadRecordingToFileExample
             }
             catch (InvalidOperationException e)
             {
-                Console.WriteLine("An error occurred during communicating with API", e);
+                Console.WriteLine("An error occurred during communicating with API, {0}", e.Message);
             }
         }
 

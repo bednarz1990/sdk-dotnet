@@ -1,42 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using APIdaze.SDK.Base;
+﻿using APIdaze.SDK.Base;
 using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace APIdaze.SDK.Applications
 {
-    internal class Applications : BaseApiClient, IApplications
+    public class Applications : BaseApiClient, IApplications
     {
+        protected override string Resource => "/applications";
+
         public Applications(IRestClient client, Credentials credentials) : base(client, credentials)
         {
         }
 
-        protected override string Resource => "/applications";
-
         public List<Application> GetApplications()
         {
-            throw new NotImplementedException();
+            return FindAll<Application>().ToList();
         }
 
         public List<Application> GetApplicationsByApiKey(string apiKey)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(apiKey))
+            {
+                throw new ArgumentException("apiKey must not be null");
+            }
+            return FindByParameter<Application>("api_key", apiKey).ToList();
         }
 
         public List<Application> GetApplicationsById(long id)
         {
-            throw new NotImplementedException();
+            return FindByParameter<Application>("api_id", id.ToString()).ToList();
         }
 
         public List<Application> GetApplicationsByName(string name)
         {
-            throw new NotImplementedException();
-        }
-
-        private static Applications Create(IRestClient client, Credentials credentials)
-        {
-            //add sanity check
-            return new Applications(client, credentials);
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("apiKey must not be null");
+            }
+            return FindByParameter<Application>("api_name", name).ToList();
         }
     }
 }

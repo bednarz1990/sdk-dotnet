@@ -1,6 +1,5 @@
-﻿using System;
-using APIdaze.SDK.Base;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using System;
 
 namespace APIdaze.SDK.Applications
 {
@@ -23,7 +22,5 @@ namespace APIdaze.SDK.Applications
         [JsonProperty("created_at")] public DateTime CreatedAt { get; set; }
 
         [JsonProperty("updated_at")] public DateTime UpdatedAt { get; set; }
-
-        [JsonIgnore] public Credentials Credentials => new Credentials(ApiKey, ApiSecret);
     }
 }
