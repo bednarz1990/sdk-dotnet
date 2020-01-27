@@ -47,11 +47,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Recordings", "Recordings", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExternalScripts", "ExternalScripts", "{34F5E3D1-3815-4750-A59F-991376AE1387}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GetExternalScript", "Apidaze.SDK.Tests.Integration\GetExternalScript\GetExternalScript.csproj", "{C8E35D43-5678-4B9E-9C9A-A60BDBAEA84A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GetExternalScript", "Apidaze.SDK.Tests.Integration\GetExternalScript\GetExternalScript.csproj", "{C8E35D43-5678-4B9E-9C9A-A60BDBAEA84A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListExternalScripts", "Apidaze.SDK.Tests.Integration\ListExternalScripts\ListExternalScripts.csproj", "{A1B9E81F-E377-4184-BA5D-C7EE2939878D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ListExternalScripts", "Apidaze.SDK.Tests.Integration\ListExternalScripts\ListExternalScripts.csproj", "{A1B9E81F-E377-4184-BA5D-C7EE2939878D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UpdateExternalScriptUrl", "Apidaze.SDK.Tests.Integration\UpdateExternalScriptUrl\UpdateExternalScriptUrl.csproj", "{437E21DC-D5E6-4EBF-BA10-D935AF44A48D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UpdateExternalScriptUrl", "Apidaze.SDK.Tests.Integration\UpdateExternalScriptUrl\UpdateExternalScriptUrl.csproj", "{437E21DC-D5E6-4EBF-BA10-D935AF44A48D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindMeOrFollowMeExample", "Apidaze.SDK.Tests.Integration\XML\FindMeOrFollowMeExample.csproj", "{3988CFA7-3651-4EB9-8FF0-7FBF1ABCF787}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ScriptsBuilders", "ScriptsBuilders", "{97647B1F-10D8-498D-B7CD-B4E7AC3B7674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -131,6 +135,10 @@ Global
 		{437E21DC-D5E6-4EBF-BA10-D935AF44A48D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{437E21DC-D5E6-4EBF-BA10-D935AF44A48D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{437E21DC-D5E6-4EBF-BA10-D935AF44A48D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3988CFA7-3651-4EB9-8FF0-7FBF1ABCF787}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3988CFA7-3651-4EB9-8FF0-7FBF1ABCF787}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3988CFA7-3651-4EB9-8FF0-7FBF1ABCF787}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3988CFA7-3651-4EB9-8FF0-7FBF1ABCF787}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -158,6 +166,8 @@ Global
 		{C8E35D43-5678-4B9E-9C9A-A60BDBAEA84A} = {34F5E3D1-3815-4750-A59F-991376AE1387}
 		{A1B9E81F-E377-4184-BA5D-C7EE2939878D} = {34F5E3D1-3815-4750-A59F-991376AE1387}
 		{437E21DC-D5E6-4EBF-BA10-D935AF44A48D} = {34F5E3D1-3815-4750-A59F-991376AE1387}
+		{3988CFA7-3651-4EB9-8FF0-7FBF1ABCF787} = {97647B1F-10D8-498D-B7CD-B4E7AC3B7674}
+		{97647B1F-10D8-498D-B7CD-B4E7AC3B7674} = {1ABFD7DB-10C6-497A-A5F4-AC32E0BAA4B2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2F57FD98-5A15-49F3-923C-967E49E1A665}

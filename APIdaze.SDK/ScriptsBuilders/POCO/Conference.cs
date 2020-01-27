@@ -7,6 +7,5 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
     public class Conference
     {
         [XmlText(typeof(string))] public string Name { get; set; }
-
     }
 }

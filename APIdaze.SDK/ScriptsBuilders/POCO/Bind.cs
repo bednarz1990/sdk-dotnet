@@ -7,5 +7,15 @@ namespace APIdaze.SDK.ScriptsBuilders
         [XmlAttribute("action")] public string Action { get; set; }
 
         [XmlText(typeof(string))] public string Value { get; set; }
+
+        public Bind()
+        {
+            
+        }
+        public Bind(string action, string value)
+        {
+            Action = action;
+            Value = value;
+        }
     }
 }
