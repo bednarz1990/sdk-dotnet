@@ -6,6 +6,9 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
 {
     public class Speak
     {
+        [XmlElement("bind", typeof(Bind))]
+        public List<object> Binds { get; set; }
+
         [XmlText(typeof(string))] public string Text { get; set; }
 
         [XmlAttribute("lang")] public LangEnum LangEnum { get; set; }
@@ -14,30 +17,35 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
 
         [XmlAttribute("input-timeout")] public double InputTimeoutMillis { get; set; }
 
-        [XmlElement("bind")] public List<Bind> Binds { get; set; }
-
         public Speak()
         {
+            Binds = new List<object>();
         }
 
         public bool ShouldSerializeInputTimeoutMillis()
         {
-            return Math.Abs(InputTimeoutMillis) > 0;  
+            return Math.Abs(InputTimeoutMillis) > 0;
         }
 
         public bool ShouldSerializeLangEnum()
         {
-            return LangEnum > 0;  
+            return LangEnum > 0;
         }
 
         public bool ShouldSerializeVoice()
         {
-            return Voice > 0; 
+            return Voice > 0;
         }
 
         public static Speak WithText(string text)
         {
-            return new Speak { Text = text };
+            return new Speak {Text = text};
+        }
+
+        public Speak AddTextAfterBinds(string s)
+        {
+            this.Text = "\r\n" + s;
+            return this;
         }
     }
 }

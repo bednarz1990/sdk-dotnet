@@ -10,7 +10,7 @@ namespace APIdaze.SDK.ScriptsBuilders
 
         public Bind()
         {
-            
+
         }
         public Bind(string action, string value)
         {

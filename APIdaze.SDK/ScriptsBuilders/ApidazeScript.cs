@@ -2,18 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
 namespace APIdaze.SDK.ScriptsBuilders
 {
-    //, DataType = "string", IsNullable = false
     [XmlRoot(ElementName = "document")]
     public class ApidazeScript
     {
         public ApidazeScript()
         {
             Nodes = new List<object>();
+        }
+
+        public static ApidazeScript Build()
+        {
+            return new ApidazeScript();
         }
 
         [XmlArrayItem(typeof(Conference), ElementName = "conference")]
@@ -39,30 +44,32 @@ namespace APIdaze.SDK.ScriptsBuilders
 
         public string ToXml(bool withFormatting = true)
         {
-            var listOfType = new List<Type> { typeof(Hangup), typeof(Answer),
+            var listOfType = new List<Type>
+            {
+                typeof(Hangup), typeof(Answer),
                 typeof(Playback), typeof(Bind), typeof(Dial), typeof(Conference),
                 typeof(Echo), typeof(Intercept), typeof(Record), typeof(Ringback),
-                typeof(Speak), typeof(Wait) };
+                typeof(Speak), typeof(Wait)
+            };
 
             var settings = new XmlWriterSettings
             {
                 OmitXmlDeclaration = true,
+                Encoding = Encoding.UTF8,
                 ConformanceLevel = ConformanceLevel.Document,
                 CloseOutput = false,
-                NamespaceHandling = NamespaceHandling.OmitDuplicates,
                 Indent = withFormatting,
+                NewLineHandling = NewLineHandling.Replace,
             };
 
             var xns = new XmlSerializerNamespaces();
             xns.Add(string.Empty, string.Empty);
             var serializer = new XmlSerializer(typeof(ApidazeScript), listOfType.ToArray());
 
-            using var stream = new StringWriter();
-            using var xmlWriter = XmlWriter.Create(stream, settings);
-
+            using var stringWriter = new StringWriter();
+            using var xmlWriter = XmlWriter.Create(stringWriter, settings);
             serializer.Serialize(xmlWriter, this, xns);
-            var withoutSpace = stream.ToString().Replace(" />", "/>");
-            return withoutSpace;
+            return stringWriter.ToString().Replace(" />", "/>");
         }
     }
 }
