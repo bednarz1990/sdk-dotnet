@@ -10,10 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="HttpMock" Version="2.3.1" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Apidaze.SDK\APIdaze.SDK.csproj" />
   </ItemGroup>
 

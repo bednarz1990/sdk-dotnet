@@ -6,10 +6,10 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
 {
     public class Speak
     {
+        [XmlText(typeof(string))] public string Text { get; set; }
+
         [XmlElement("bind", typeof(Bind))]
         public List<object> Binds { get; set; }
-
-        [XmlText(typeof(string))] public string Text { get; set; }
 
         [XmlAttribute("lang")] public LangEnum LangEnum { get; set; }
 
@@ -40,12 +40,6 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
         public static Speak WithText(string text)
         {
             return new Speak {Text = text};
-        }
-
-        public Speak AddTextAfterBinds(string s)
-        {
-            this.Text = "\r\n" + s;
-            return this;
         }
     }
 }

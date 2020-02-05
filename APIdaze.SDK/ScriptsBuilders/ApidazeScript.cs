@@ -42,7 +42,7 @@ namespace APIdaze.SDK.ScriptsBuilders
             return this;
         }
 
-        public string ToXml(bool withFormatting = true)
+        public string ToXml(bool withFormatting = true, bool omitXmlDeclaration = false)
         {
             var listOfType = new List<Type>
             {
@@ -54,8 +54,8 @@ namespace APIdaze.SDK.ScriptsBuilders
 
             var settings = new XmlWriterSettings
             {
-                OmitXmlDeclaration = true,
-                Encoding = Encoding.UTF8,
+                OmitXmlDeclaration = omitXmlDeclaration,
+                Encoding = new UTF8Encoding(true),
                 ConformanceLevel = ConformanceLevel.Document,
                 CloseOutput = false,
                 Indent = withFormatting,
@@ -66,10 +66,15 @@ namespace APIdaze.SDK.ScriptsBuilders
             xns.Add(string.Empty, string.Empty);
             var serializer = new XmlSerializer(typeof(ApidazeScript), listOfType.ToArray());
 
-            using var stringWriter = new StringWriter();
+            using var stringWriter = new UTF8StringWriter();
             using var xmlWriter = XmlWriter.Create(stringWriter, settings);
             serializer.Serialize(xmlWriter, this, xns);
             return stringWriter.ToString().Replace(" />", "/>");
+        }
+
+        private class UTF8StringWriter : StringWriter
+        {
+            public override Encoding Encoding => Encoding.UTF8;
         }
     }
 }

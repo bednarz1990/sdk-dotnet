@@ -15,7 +15,7 @@ namespace APIdaze.SDK
         private readonly Credentials _credentials;
         private readonly string _url;
 
-        internal ApiActionFactory(Credentials credentials, string url)
+        internal ApiActionFactory(Credentials credentials, string url = "https://api4.apidaze.io/")
         {
             _credentials = credentials;
             _url = url;

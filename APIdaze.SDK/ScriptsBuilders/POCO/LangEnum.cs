@@ -4,7 +4,8 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
 {
     public enum LangEnum
     {
-        [XmlEnum(Name = "da-DK")] DANISH = 1,
+        [XmlEnum(Name = "en-US")] ENGLISH_US = 1,
+        [XmlEnum(Name = "da-DK")] DANISH, 
         [XmlEnum(Name = "nl-NL")] DUTCH,
         [XmlEnum(Name = "it-IT")] ITALIAN,
         [XmlEnum(Name = "ja-JP")] JAPANESE,
@@ -17,7 +18,6 @@ namespace APIdaze.SDK.ScriptsBuilders.POCO
         [XmlEnum(Name = "uk-UA")] UKRANIAN,
         [XmlEnum(Name = "en-AU")] ENGLISH_AUSTRALIA,
         [XmlEnum(Name = "en-GB")] ENGLISH_UK,
-        [XmlEnum(Name = "en-US")] ENGLISH_US,
         [XmlEnum(Name = "fr-CA")] FRENCH_CANADA,
         [XmlEnum(Name = "fr-FR")] FRENCH_FRANCE,
         [XmlEnum(Name = "de-DE")] GERMAN,
