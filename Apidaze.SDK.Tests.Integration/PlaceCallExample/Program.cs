@@ -1,18 +1,23 @@
-﻿using Microsoft.Extensions.Configuration;
-using System;
-using System.IO;
-using APIdaze.SDK;
+﻿using APIdaze.SDK;
 using APIdaze.SDK.Base;
-using APIdaze.SDK.Calls;
 using APIdaze.SDK.Exception;
 using APIdaze.SDK.Messages;
-using Microsoft.VisualBasic;
+using Microsoft.Extensions.Configuration;
+using System;
+using System.IO;
 using CallType = APIdaze.SDK.Calls.CallType;
 
 namespace PlaceCallExample
 {
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
             var config = BuildConfig();
@@ -58,6 +63,10 @@ namespace PlaceCallExample
             }
         }
 
+        /// <summary>
+        /// Builds the configuration.
+        /// </summary>
+        /// <returns>IConfigurationRoot.</returns>
         private static IConfigurationRoot BuildConfig()
         {
             return new ConfigurationBuilder()

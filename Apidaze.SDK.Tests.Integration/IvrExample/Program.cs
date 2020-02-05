@@ -11,8 +11,15 @@ using System.Threading.Tasks;
 
 namespace IvrExample
 {
+    /// <summary>
+    /// Class Program.
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Defines the entry point of the application.
+        /// </summary>
+        /// <param name="args">The arguments.</param>
         static void Main(string[] args)
         {
             try
@@ -29,18 +36,39 @@ namespace IvrExample
         }
     }
 
+    /// <summary>
+    /// Class WebService.
+    /// </summary>
     internal static class WebService
     {
         /// <summary>
         /// The port the HttpListener should listen on
         /// </summary>
         private static readonly string SERVERL_URL = "http://c89e3bf5.ngrok.io";
+        /// <summary>
+        /// The localhost
+        /// </summary>
         private static readonly string LOCALHOST = "http://localhost:8080";
 
+        /// <summary>
+        /// The intro
+        /// </summary>
         static readonly string INTRO = "/";
+        /// <summary>
+        /// The step 1 path
+        /// </summary>
         static readonly string STEP_1_PATH = "/step1.xml/";
+        /// <summary>
+        /// The step 2 path
+        /// </summary>
         static readonly string STEP_2_PATH = "/step2.xml/";
+        /// <summary>
+        /// The step 3 path
+        /// </summary>
         static readonly string STEP_3_PATH = "/step3.xml/";
+        /// <summary>
+        /// The playback path
+        /// </summary>
         static readonly string PLAYBACK_PATH = "/apidazeintro.wav/";
 
         /// <summary>
@@ -96,7 +124,6 @@ namespace IvrExample
         /// <summary>
         /// The main loop to handle requests into the HttpListener
         /// </summary>
-        /// <returns></returns>
         private static async Task MainLoop()
         {
 
@@ -165,6 +192,13 @@ namespace IvrExample
             }
         }
 
+        /// <summary>
+        /// Gets the intro.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="handled">if set to <c>true</c> [handled].</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool GetIntro(HttpListenerContext context, HttpListenerResponse response, bool handled)
         {
             switch (context.Request.HttpMethod)
@@ -198,6 +232,12 @@ namespace IvrExample
             return handled;
         }
 
+        /// <summary>
+        /// Writes the response stream.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <param name="intro">The intro.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool WriteResponseStream(HttpListenerResponse response, string intro)
         {
             bool handled;
@@ -208,6 +248,13 @@ namespace IvrExample
             return handled;
         }
 
+        /// <summary>
+        /// Gets the step1.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="handled">if set to <c>true</c> [handled].</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool GetStep1(HttpListenerContext context, HttpListenerResponse response, bool handled)
         {
             switch (context.Request.HttpMethod)
@@ -245,6 +292,13 @@ namespace IvrExample
             return handled;
         }
 
+        /// <summary>
+        /// Gets the step2.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="handled">if set to <c>true</c> [handled].</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool GetStep2(HttpListenerContext context, HttpListenerResponse response, bool handled)
         {
             switch (context.Request.HttpMethod)
@@ -265,6 +319,11 @@ namespace IvrExample
             return handled;
         }
 
+        /// <summary>
+        /// Returns the exception response.
+        /// </summary>
+        /// <param name="response">The response.</param>
+        /// <param name="e">The e.</param>
         private static void ReturnExceptionResponse(HttpListenerResponse response, Exception e)
         {
             response.StatusCode = 500;
@@ -273,6 +332,13 @@ namespace IvrExample
             response.ContentLength64 = buffer.Length;
             response.OutputStream.Write(buffer, 0, buffer.Length);
         }
+        /// <summary>
+        /// Gets the step3.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="handled">if set to <c>true</c> [handled].</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool GetStep3(HttpListenerContext context, HttpListenerResponse response, bool handled)
         {
             switch (context.Request.HttpMethod)
@@ -292,6 +358,13 @@ namespace IvrExample
 
             return handled;
         }
+        /// <summary>
+        /// Gets the intro wav.
+        /// </summary>
+        /// <param name="context">The context.</param>
+        /// <param name="response">The response.</param>
+        /// <param name="handled">if set to <c>true</c> [handled].</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         private static bool GetIntroWav(HttpListenerContext context, HttpListenerResponse response, bool handled)
         {
             switch (context.Request.HttpMethod)
@@ -313,8 +386,16 @@ namespace IvrExample
         }
     }
 
+    /// <summary>
+    /// Class ExampleUtil.
+    /// </summary>
     public static class ExampleUtil
     {
+        /// <summary>
+        /// Gets the file contents.
+        /// </summary>
+        /// <param name="sampleFile">The sample file.</param>
+        /// <returns>System.Byte[].</returns>
         public static byte[] GetFileContents(string sampleFile)
         {
             var asm = Assembly.GetExecutingAssembly();
@@ -325,6 +406,11 @@ namespace IvrExample
             return reader.BaseStream.ToByteArray();
         }
 
+        /// <summary>
+        /// Converts to bytearray.
+        /// </summary>
+        /// <param name="stream">The stream.</param>
+        /// <returns>System.Byte[].</returns>
         private static byte[] ToByteArray(this Stream stream)
         {
             using MemoryStream memoryStream = new MemoryStream();
