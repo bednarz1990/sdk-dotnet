@@ -1,30 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using APIdaze.SDK.CdrHttpHandlers;
+﻿using APIdaze.SDK.CdrHttpHandlers;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
 using RestSharp;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
 using CdrHttpHandlersAlias = APIdaze.SDK.CdrHttpHandlers.CdrHttpHandlers;
 
 
 namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
 {
+    /// <summary>
+    /// Defines test class CdrHttpHandlersTest.
+    /// Implements the <see cref="APIdaze.SDK.Tests.Unit.BaseTest" />
+    /// </summary>
+    /// <seealso cref="APIdaze.SDK.Tests.Unit.BaseTest" />
     [TestClass]
     public class CdrHttpHandlersTest : BaseTest
     {
+        /// <summary>
+        /// The CDR HTTP handler
+        /// </summary>
         private CdrHttpHandlersAlias _cdrHttpHandler;
 
+        /// <summary>
+        /// Startups this instance.
+        /// </summary>
         [TestInitialize]
         public void Startup()
         {
             _cdrHttpHandler = new CdrHttpHandlersAlias(MockIRestClient.Object, CredentialsForTest);
         }
 
+        /// <summary>
+        /// Defines the test method GetCdrHttpHandlers_ListOfCdrHttpHandlers_ReturnsCdrHttpHandlers.
+        /// </summary>
         [TestMethod]
         public void GetCdrHttpHandlers_ListOfCdrHttpHandlers_ReturnsCdrHttpHandlers()
         {
@@ -41,6 +55,9 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             MockIRestClient.Verify(x => x.Execute<List<CdrHttpHandler>>(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method CreateCdrHttpHandler_NameAndUri_ReturnsNewCdrHttpHandler.
+        /// </summary>
         [TestMethod]
         public void CreateCdrHttpHandler_NameAndUri_ReturnsNewCdrHttpHandler()
         {
@@ -59,6 +76,9 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             MockIRestClient.Verify(x => x.Execute<CdrHttpHandler>(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method UpdateCdrHttpHandler_IdAndNameAndUri_ReturnsUpdatedCdrHttpHandler.
+        /// </summary>
         [TestMethod]
         public void UpdateCdrHttpHandler_IdAndNameAndUri_ReturnsUpdatedCdrHttpHandler()
         {
@@ -78,6 +98,9 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             MockIRestClient.Verify(x => x.Execute<CdrHttpHandler>(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method UpdateCdrHttpHandlerName_IdAndName_ReturnsUpdatedCdrHttpHandler.
+        /// </summary>
         [TestMethod]
         public void UpdateCdrHttpHandlerName_IdAndName_ReturnsUpdatedCdrHttpHandler()
         {
@@ -96,6 +119,9 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             MockIRestClient.Verify(x => x.Execute<CdrHttpHandler>(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method UpdateCdrHttpHandlerUrl_IdAndUrl_ReturnsUpdatedCdrHttpHandler.
+        /// </summary>
         [TestMethod]
         public void UpdateCdrHttpHandlerUrl_IdAndUrl_ReturnsUpdatedCdrHttpHandler()
         {
@@ -114,6 +140,9 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             MockIRestClient.Verify(x => x.Execute<CdrHttpHandler>(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method DeleteCdrHttpHandler_Id_NoContent.
+        /// </summary>
         [TestMethod]
         public void DeleteCdrHttpHandler_Id_NoContent()
         {
@@ -129,6 +158,10 @@ namespace APIdaze.SDK.Tests.Unit.CdrHttpHandlers
             MockIRestClient.Verify(x => x.Execute(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Builds the CDR HTTP handlers.
+        /// </summary>
+        /// <returns>List&lt;CdrHttpHandler&gt;.</returns>
         private static List<CdrHttpHandler> BuildCdrHttpHandlers()
         {
             return new List<CdrHttpHandler>

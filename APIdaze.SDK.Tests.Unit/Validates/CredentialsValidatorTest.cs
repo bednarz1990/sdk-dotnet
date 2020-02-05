@@ -1,26 +1,38 @@
-﻿using System;
+﻿using APIdaze.SDK.Validates;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RestSharp;
+using System;
 using System.Net;
-using APIdaze.SDK.Messages;
-using APIdaze.SDK.Validates;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
-
 
 namespace APIdaze.SDK.Tests.Unit.Validates
 {
+    /// <summary>
+    /// Defines test class CredentialsValidatorTest.
+    /// Implements the <see cref="APIdaze.SDK.Tests.Unit.BaseTest" />
+    /// </summary>
+    /// <seealso cref="APIdaze.SDK.Tests.Unit.BaseTest" />
     [TestClass]
     public class CredentialsValidatorTest : BaseTest
     {
-        private  CredentialsValidator _validator;
+        /// <summary>
+        /// The validator
+        /// </summary>
+        private CredentialsValidator _validator;
 
+        /// <summary>
+        /// Startups this instance.
+        /// </summary>
         [TestInitialize]
         public void Startup()
         {
             _validator = new CredentialsValidator(MockIRestClient.Object, CredentialsForTest);
         }
 
+        /// <summary>
+        /// Defines the test method ValidateCredentials_StatusCodeOK_ReturnTrue.
+        /// </summary>
         [TestMethod]
         public void ValidateCredentials_StatusCodeOK_ReturnTrue()
         {
@@ -37,6 +49,9 @@ namespace APIdaze.SDK.Tests.Unit.Validates
             MockIRestClient.Verify(x => x.Execute(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method ValidateCredentials_StatusCodeUnauthorized_ReturnFalse.
+        /// </summary>
         [TestMethod]
         public void ValidateCredentials_StatusCodeUnauthorized_ReturnFalse()
         {
@@ -52,6 +67,9 @@ namespace APIdaze.SDK.Tests.Unit.Validates
             MockIRestClient.Verify(x => x.Execute(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method ValidateCredentials_StatusCodeInternalServerError_ShouldThrowIOException.
+        /// </summary>
         [TestMethod]
         public void ValidateCredentials_StatusCodeInternalServerError_ShouldThrowIOException()
         {

@@ -1,32 +1,59 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using APIdaze.SDK.Messages;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Extensions;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Threading.Tasks;
 using static APIdaze.SDK.Tests.Unit.TestUtil;
 
 namespace APIdaze.SDK.Tests.Unit.Recordings
 {
+    /// <summary>
+    /// Defines test class RecordingsTests.
+    /// Implements the <see cref="APIdaze.SDK.Tests.Unit.BaseTest" />
+    /// </summary>
+    /// <seealso cref="APIdaze.SDK.Tests.Unit.BaseTest" />
     [TestClass]
     public class RecordingsTests : BaseTest
     {
+        /// <summary>
+        /// The recordings API
+        /// </summary>
         private SDK.Recordings.Recordings _recordingsApi;
 
+        /// <summary>
+        /// The source files dir
+        /// </summary>
         private static readonly string SOURCE_FILES_DIR = Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, @"Recordings\TestData"));
+        /// <summary>
+        /// The source file name
+        /// </summary>
         private static readonly string SOURCE_FILE_NAME = "mediafile.wav";
+        /// <summary>
+        /// The source file
+        /// </summary>
         private static readonly FileInfo SOURCE_FILE = new FileInfo(Path.Combine(SOURCE_FILES_DIR, SOURCE_FILE_NAME));
+        /// <summary>
+        /// The target dir
+        /// </summary>
         private static readonly string TARGET_DIR = Path.GetFullPath(@"target\");
+        /// <summary>
+        /// The target file
+        /// </summary>
         private static readonly FileInfo TARGET_FILE = new FileInfo(Path.Combine(TARGET_DIR, SOURCE_FILE_NAME));
+        /// <summary>
+        /// The target file with changed name
+        /// </summary>
         private static readonly FileInfo TARGET_FILE_WITH_CHANGED_NAME = new FileInfo(Path.Combine(TARGET_DIR, "new-file.wav"));
 
+        /// <summary>
+        /// Startups this instance.
+        /// </summary>
         [TestInitialize]
         public void Startup()
         {
@@ -35,6 +62,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             File.Delete(TARGET_FILE_WITH_CHANGED_NAME.Name);
         }
 
+        /// <summary>
+        /// Cleans up.
+        /// </summary>
         [TestCleanup]
         public void CleanUp()
         {
@@ -43,6 +73,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             File.Delete(TARGET_FILE_WITH_CHANGED_NAME.FullName);
         }
 
+        /// <summary>
+        /// Defines the test method GetRecordingsList_ListOfRecordingsAreOnServer_ReturnsListOfRecordings.
+        /// </summary>
         [TestMethod]
         public void GetRecordingsList_ListOfRecordingsAreOnServer_ReturnsListOfRecordings()
         {
@@ -59,6 +92,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             recordings.Should().BeEquivalentTo(result);
         }
 
+        /// <summary>
+        /// Defines the test method DeleteRecording_FileName_DeleteExecutedOnce.
+        /// </summary>
         [TestMethod]
         public void DeleteRecording_FileName_DeleteExecutedOnce()
         {
@@ -75,6 +111,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             MockIRestClient.Verify(x => x.Execute(It.IsAny<RestRequest>()), Times.Once);
         }
 
+        /// <summary>
+        /// Defines the test method DownloadRecording_SourceFile_Stream.
+        /// </summary>
         [TestMethod]
         public void DownloadRecording_SourceFile_Stream()
         {
@@ -94,6 +133,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             expectedStream.Close();
         }
 
+        /// <summary>
+        /// Defines the test method DownloadRecordingAsync_SourceFile_Stream.
+        /// </summary>
         [TestMethod]
         public async Task DownloadRecordingAsync_SourceFile_Stream()
         {
@@ -113,6 +155,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             expectedStream.Close();
         }
 
+        /// <summary>
+        /// Defines the test method DownloadRecordingAsync_ApiReturnsError_FailureInvoked.
+        /// </summary>
         [TestMethod]
         public async Task DownloadRecordingAsync_ApiReturnsError_FailureInvoked()
         {
@@ -124,6 +169,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             await Assert.ThrowsExceptionAsync<InvalidOperationException>(() => _recordingsApi.DownloadRecodingToFileAsync(SOURCE_FILE_NAME, TARGET_DIR));
         }
 
+        /// <summary>
+        /// Defines the test method DownloadRecordingToFile_SourceFile_FileWithOriginalName.
+        /// </summary>
         [TestMethod]
         public void DownloadRecordingToFile_SourceFile_FileWithOriginalName()
         {
@@ -143,6 +191,9 @@ namespace APIdaze.SDK.Tests.Unit.Recordings
             expectedStream.Close();
         }
 
+        /// <summary>
+        /// Defines the test method DownloadRecordingToFile_SourceFile_FileWithChangedName.
+        /// </summary>
         [TestMethod]
         public void DownloadRecordingToFile_SourceFile_FileWithChangedName()
         {
