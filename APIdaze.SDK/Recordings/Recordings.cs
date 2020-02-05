@@ -45,8 +45,7 @@ namespace APIdaze.SDK.Recordings
             var response = Client.Execute(restRequest);
             if (response.StatusCode != HttpStatusCode.OK) throw new InvalidOperationException(response.ErrorMessage);
 
-            var fileName = SaveFileToFolder(sourceFileName, target, response);
-            return new FileInfo(fileName);
+            return SaveFileToFolder(sourceFileName, target, response);
         }
 
         public void DeleteRecording(string fileName)
@@ -63,7 +62,7 @@ namespace APIdaze.SDK.Recordings
             return restRequest;
         }
 
-        private static string SaveFileToFolder(string sourceFileName, string target, IRestResponse response)
+        private static FileInfo SaveFileToFolder(string sourceFileName, string target, IRestResponse response)
         {
             var targetDir = Path.GetDirectoryName(target);
             var fileName = Path.GetFileName(target);
@@ -75,7 +74,7 @@ namespace APIdaze.SDK.Recordings
 
             var fullPathName = Path.Combine(targetDir, fileName);
             response.RawBytes.SaveAs(fullPathName);
-            return fullPathName;
+            return new FileInfo(fullPathName);
         }
     }
 }

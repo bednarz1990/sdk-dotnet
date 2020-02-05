@@ -2,7 +2,7 @@
 using APIdaze.SDK.Base;
 using RestSharp;
 
-namespace APIdaze.SDK.Validates
+namespace APIdaze.SDK.Validate
 {
     public class CredentialsValidator : BaseApiClient, ICredentialsValidator
     {

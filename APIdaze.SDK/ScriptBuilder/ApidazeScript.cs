@@ -5,7 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
-namespace APIdaze.SDK.ScriptsBuilders
+namespace APIdaze.SDK.ScriptBuilder
 {
     [XmlRoot(ElementName = "document",
         DataType = "string",

@@ -5,7 +5,7 @@ using APIdaze.SDK.CdrHttpHandlers;
 using APIdaze.SDK.ExternalScripts;
 using APIdaze.SDK.Messages;
 using APIdaze.SDK.Recordings;
-using APIdaze.SDK.Validates;
+using APIdaze.SDK.Validate;
 using RestSharp;
 
 namespace APIdaze.SDK
